@@ -1,15 +1,19 @@
 import styled from "styled-components";
-import { Theme } from "../../themes/theme";
+import { BOTTOM_MENU_HEIGHT, Theme } from "../../themes/theme";
 
 export const MenuWrapper = styled.section`
     border-top: 2px solid #ccc;
     position: fixed;
     width: 100%;
-    height: 100px;
+    height: ${BOTTOM_MENU_HEIGHT}px;
     background-color: white;
     display: flex;
     bottom: 0;
     left: 0;
+    a {
+        flex: 1;
+        text-decoration: none;
+    }
 `;
 
 export const ItemMenuWrapper = styled.div`
@@ -24,9 +28,11 @@ export const ItemMenuWrapper = styled.div`
         color: ${Theme.secondary};
         font-size: 1.5em;
     }
+    
     p {
         color: ${Theme.secondary};
     }
+
     &:hover {
         cursor: pointer;
         background-color: ${Theme.secondary};

@@ -6,18 +6,18 @@ import { MenuWrapper } from './styles';
 const MenuOptions = [
   {
     icon: IoHome,
-    label: 'Inicio',
+    label: 'Tiendas',
     path: '/'
   },
   {
     icon: IoCart,
     label: 'Carrito',
-    path: '/'
+    path: '/Checkout'
   },
   {
     icon: IoPerson,
     label: 'Usuario',
-    path: '/'
+    path: '/Profile'
   }
 ];
 
