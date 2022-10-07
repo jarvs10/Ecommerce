@@ -1,16 +1,20 @@
-import React from 'react'
-import Page from '../../components/Page'
+import React from 'react';
+import Page from '../../components/Page';
 import { useForm } from 'react-hook-form';
 import { FormControlLabel, FormControlInput, Button, FormControl, FormControlAction } from '../../globalStyles';
 import { Theme } from '../../themes/theme';
 
 const Signup = () => {
 
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({mode: 'onChange'});
+    //const [ nombre, setNombre ] = useState('');
+
+    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm({mode: 'onChange'});
     // mode: onChange
 
     const onSubmitLogin = (data) => {
       console.log('data', data);
+      reset();
+      //setNombre('');
     }
 
     return (
@@ -25,11 +29,12 @@ const Signup = () => {
               type="text"
               placeholder='Nombre'
               id='nombre'
-              {...register('nombre', { required: true})}
+              {...register('nombre', { required: true })}
+              //onChange={ (e) => setNombre(e.target.value) }
             />
             {errors.nombre?.type === "required" &&
-              (<span>Este campo es obligatorio</span>)
-            }
+                (<span>Este campo es obligatorio</span>)
+              }
           </FormControl>
 
           <FormControl>

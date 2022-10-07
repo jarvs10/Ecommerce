@@ -3,34 +3,37 @@ import { useState } from 'react';
 import { SearchWrapper, SearchInput, SearchClearWrapper } from './styles';
 import { IoClose } from 'react-icons/io5';
 
-const Search = ({ searchTerm = ''}) => {
+const Search = ({ searchTerm = '', Listener }) => {
 
-    const [ searchText, setSearchText ] = useState(searchTerm);
+  const [searchText, setSearchText] = useState(searchTerm);
 
-    function handlerChangeText(e){
-        setSearchText(e.target.value);
-    }
+  function handlerChangeText(e) {
+    const data = e.target.value;
+    setSearchText(data);
+    Listener(data);
+  }
 
-    function clearSearchHandler(){
-        setSearchText('');
-    }
+  function clearSearchHandler() {
+    setSearchText('');
+    Listener('');
+  }
 
-    return (
-        <SearchWrapper>
-            <SearchInput 
-                value = {searchText}
-                onChange={handlerChangeText}
-                type='text'
-                placeholder='Search...'
-            />
+  return (
+    <SearchWrapper>
+      <SearchInput
+        value={searchText}
+        onChange={handlerChangeText}
+        type='text'
+        placeholder='Search...'
+      />
 
-            <SearchClearWrapper 
-                onClick={clearSearchHandler} 
-                hasText={searchText !== ''}
-            >
-                <IoClose/>
-            </SearchClearWrapper> 
-        </SearchWrapper>
+      <SearchClearWrapper
+        onClick={clearSearchHandler}
+        hasText={searchText !== ''}
+      >
+        <IoClose />
+      </SearchClearWrapper>
+    </SearchWrapper>
   )
 }
 

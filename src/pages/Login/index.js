@@ -5,7 +5,7 @@ import { FormControlLabel, FormControlInput, Button, FormControl, FormControlAct
 
 const Login = () => {
 
-  const { register, handleSubmit, formState: { errors, isValid }} = useForm();
+  const { register, handleSubmit, formState: { errors, isValid }} = useForm({mode: 'onChange'});
   // mode: onChange
 
   const onSubmitLogin = (data) => {

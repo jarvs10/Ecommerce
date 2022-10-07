@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import Page from '../../components/Page';
 import Search from '../../components/Search'
 import CardShop from './components/CardShop';
@@ -56,9 +56,19 @@ const SHOPS = [
 ];
 
 const Home = () => {
+
+  const [ searchShops, setSearchShops ] = useState('');
+
+  const onSearchShops = (data) =>{
+    setSearchShops(data);
+  }
+
   return (
     <Page>
-        <Search/>
+        <Search searchTerm='' Listener={onSearchShops}/>
+        { searchShops !== '' 
+          && (<p>Filtro: <strong>{searchShops}</strong></p>)
+        }
         {
           SHOPS.map((item, key) => <CardShop key={key} {...item} />)
         }
