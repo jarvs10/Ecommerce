@@ -1,8 +1,9 @@
-import { useParams } from 'react-router-dom'
-import Page from '../../components/Page'
-import { Product } from '../../components/Product'
-import Search from '../../components/Search'
-import { ProductsGrid } from './styles'
+import { useParams } from 'react-router-dom';
+import Page from '../../components/Page';
+import { Product } from '../../components/Product';
+import Search from '../../components/Search';
+import { ProductsGrid } from './styles';
+import { useState } from 'react';
 
 const Productos = [
   {
@@ -28,20 +29,49 @@ const Productos = [
     name: 'Frijol cargamanto',
     precio: 7500,
     img: 'https://jumbocolombiaio.vtexassets.com/arquivos/ids/200366/7702511003251.jpg?v=637814145985530000'
+  },
+  {
+    id: 5,
+    name: 'Frijol cargamanto',
+    precio: 7500,
+    img: 'https://jumbocolombiaio.vtexassets.com/arquivos/ids/200366/7702511003251.jpg?v=637814145985530000'
+  },
+  {
+    id: 6,
+    name: 'Frijol cargamanto',
+    precio: 7500,
+    img: 'https://jumbocolombiaio.vtexassets.com/arquivos/ids/200366/7702511003251.jpg?v=637814145985530000'
   }
 ]
 
 const Products = () => {
 
   const { idShop } = useParams();
+  
+  const [searchProducts, setSearchProducts] = useState('')
+
+  const listenerButtom = (id) => {
+    console.log(id);
+  }
+
+  const onSearchShops = (data) =>{
+    setSearchProducts(data);
+  }
 
   return (
     <Page>
       <h2>Shop ID:{idShop}</h2>
-      <Search/>
+      <Search Listener={onSearchShops}/>
+      <p>{searchProducts}</p>
       <ProductsGrid>
         {
-          Productos.map((products, key) => <Product key={key} {...products} />)
+          Productos.map((products, key) => <Product 
+            key={key} 
+            {...products} 
+            onPress={listenerButtom}
+            hasAction={true}
+            textAction= 'Agregar'
+          />)
         }
       </ProductsGrid>
       
