@@ -4,6 +4,7 @@ import { Product } from '../../components/Product';
 import Search from '../../components/Search';
 import { ProductsGrid } from './styles';
 import { useState } from 'react';
+import { useCart } from '../../contexts/CartContext';
 
 const Productos = [
   {
@@ -48,10 +49,11 @@ const Products = () => {
 
   const { idShop } = useParams();
   
-  const [searchProducts, setSearchProducts] = useState('')
+  const [searchProducts, setSearchProducts] = useState('');
+  const { addProductCart } = useCart();
 
   const listenerButtom = (id) => {
-    console.log(id);
+    addProductCart(id)
   }
 
   const onSearchShops = (data) =>{
