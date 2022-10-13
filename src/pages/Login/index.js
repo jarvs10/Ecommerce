@@ -1,15 +1,33 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import Page from '../../components/Page';
+import { useUser } from '../../contexts/UserContext';
 import { FormControlLabel, FormControlInput, Button, FormControl, FormControlAction } from '../../globalStyles';
 
 const Login = () => {
 
-  const { register, handleSubmit, formState: { errors, isValid }} = useForm({mode: 'onChange'});
+  const { register, handleSubmit, reset, formState: { errors, isValid }} = useForm({mode: 'onChange'});
   // mode: onChange
+
+  const { setAuth, setUserInfo } = useUser();
+  const navigate = useNavigate();
 
   const onSubmitLogin = (data) => {
     console.log('data', data);
+    // call request login //
+    if(data.email === 'jarv1009@gmail.com' && data.password === 'sofia0725'){
+      setAuth(true);
+      setUserInfo({name: 'Jaiber Restrepo', email: 'jarv1009@gmail.com', phone: 3206644863});
+
+      reset();
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+      
+    } else {
+      alert('Error en la autenticacion');
+    }
   }
 
   return (
@@ -54,7 +72,7 @@ const Login = () => {
             >Ingresar
           </Button>
         </FormControlAction>
-        { isValid ? 'es valido': 'no es valido'}
+        { isValid ? '': 'no es valido'}
       </form>
     </Page>
   )

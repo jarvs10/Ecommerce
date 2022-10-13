@@ -3,16 +3,11 @@ import { Link } from 'react-router-dom';
 import Page from '../../components/Page'
 import { Button } from '../../globalStyles';
 import { Theme } from '../../themes/theme';
+import { useUser } from '../../contexts/UserContext';
 
 const Profile = () => {
 
-  const isAuth = false;
-  const user = {
-    name: 'Jaiber',
-    phone: 3206644863,
-    email: 'jaiber@gmail.com',
-    avatar: ''
-  }
+  const { user } = useUser();
 
   const UserInfo = () => (
     <div>
@@ -21,7 +16,10 @@ const Profile = () => {
       <p>{user.email}</p>
       <br/>
       <br/>
-      <Button type="">Cerrar Sesion</Button>
+      <Button
+        type="">
+        Cerrar Sesion
+      </Button>
     </div>
   );
 
@@ -42,7 +40,7 @@ const Profile = () => {
   return (
     <Page>
         <h1>Mi Cuenta</h1>
-        { isAuth ? <UserInfo/> : <UserUnauth/>}
+        { user.isAuth ? <UserInfo/> : <UserUnauth/>}
     </Page>
   )
 }
